@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Get the search input and suggestions container
+            const searchInput = document.getElementById('search-input');
+            const suggestionsContainer = document.getElementById('suggestions');
+
+            // Define the book list
+            const books = [
+                {
+                    title: 'DEATH COMES FOR THE ARCHBISHOP',
+                    author: 'WILLA CATHER',
+                    genre: 'Fiction',
+                    year: 2021,
+                    availability: 'Available (5 copies)'
+                },
+                {
+                    title: 'NORMAL PEOPLE',
+                    author: 'SALLY ROONEY',
+                    genre: 'Fiction',
+                    year: 2022,
+                    availability: 'Unavailable (0 copies)'
+                },
+                {
+                    title: 'MASTER SLAVE HUSBAND WIFE',
+                    author: 'ILYON WOO',
+                    genre: 'Non-fiction',
+                    year: 2020,
+                    availability: 'Available (9 copies)'
+                },
+                {
+                    title: 'WRONG PLACE WRONG TIME',
+                    author: 'GILLIAN McALLISTER',
+                    genre: 'Mystery',
+                    year: 2018,
+                    availability: 'Available (7 copies)'
+                }
+                // Add more books as needed
+            ];
+
+            // Function to filter books based on search term
+            function filterBooks(searchTerm) {
+                return books.filter((book) => {
+                    // Check if the search term matches any field in the book object
+                    return (
+                        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        book.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        book.year.toString().includes(searchTerm)
+                    );
+                });
+            }
+
+            // Function to display the search suggestions
+            function displaySuggestions(suggestions) {
+                // Clear previous suggestions
+                suggestionsContainer.innerHTML = '';
+
+                // Display each suggestion as a list item
+                suggestions.forEach((suggestion) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = suggestion.title;
+                    suggestionsContainer.appendChild(listItem);
+                });
+            }
+
+            // Event listener for search input
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value;
+
+                // Filter books based on search term
+                const filteredBooks = filterBooks(searchTerm);
+
+                // Display suggestions
+                displaySuggestions(filteredBooks);
+            });
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <img src="image4.png" alt="Library Logo">
+                <h1 style="color: white;">LIBRARY MANAGEMENT SYSTEM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="books.html">BOOKS</a></li>
+                    <li><a href="student_login.html">STUDENT-LOGIN</a></li>
+                    <li><a href="admin_login.html">ADMIN-LOGIN</a></li>
+                    <li><a href="feedback.html">FEEDBACK</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <h2>Book List</h2>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search...">
+                <ul id="suggestions"></ul>
+            </div>
+            <div class="book-list">
+                <!-- Book 1 -->
+                <div class="book-item">
+                    <img src="Book1.jpg" alt="Book 1">
+                    <h3>DEATH COMES FOR THE ARCHBISHOP</h3>
+                    <p>Author: WILLA CATHER</p>
+                    <p>Genre: Fiction</p>
+                    <p>Year of Publishing: 2021</p>
+                    <p>Availability: Available (5 copies)</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <!-- Book 2 -->
+                <div class="book-item">
+                    <img src="book2.jpg" alt="Book 2">
+                    <h3>NORMAL PEOPLE</h3>
+                    <p>Author: SALLY ROONEY</p>
+                    <p>Genre: Fiction </p>
+                    <p>Year of Publishing: 2022</p>
+                    <p>Availability: Unavailable (0 copies)</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <!-- Book 3 -->
+                <div class="book-item">
+                    <img src="book3.jpg" alt="Book 2">
+                    <h3>MASTER SLAVE HUSBAND WIFE</h3>
+                    <p>Author: ILYON WOO</p>
+                    <p>Genre: Non-Fiction </p>
+                    <p>Year of Publishing: 2020</p>
+                    <p>Availability: Available (9 copies)</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <!-- Book 4 -->
+                <div class="book-item">
+                    <img src="book4.jpg" alt="Book 2">
+                    <h3>WRONG PLACE WRONG TIME</h3>
+                    <p>Author: GILLIAN McALLISTER</p>
+                    <p>Genre: Mystery </p>
+                    <p>Year of Publishing: 2018</p>
+                    <p>Availability: Available (7 copies)</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <!-- Add more books as needed -->
+            </div>
+        </section>
+    </div>
+    <script src="cart.js"></script>
+</body>
+
+</html>
